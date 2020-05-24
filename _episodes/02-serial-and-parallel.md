@@ -159,11 +159,12 @@ $$ \mathrm{speedup} = t_1 / t_N $$
 
 where $$t_1$$ is the computational time for running the software using
 one processor, and $$t_N$$ is the computational time running the same
-software with N processors. Ideally, we would like software to have a
-linear speedup that is equal to the number of processors (speedup =
-N), as that would mean that every processor would be contributing 100%
-of its computational power. Unfortunately, this is a very challenging
-goal for real applications to attain.
+software with N processors. 
+- Ideally, we would like software to have a
+  linear speedup that is equal to the number of processors (speedup =
+  N), as that would mean that every processor would be contributing 100%
+  of its computational power. 
+- Unfortunately, this is a very challenging goal for real applications to attain.
 
 ### Amdahl's Law and strong scaling
 
@@ -196,11 +197,17 @@ below.
 > limited to at most 20 times (when N = ∞, speedup = 1/s = 20). 
 {: .callout}
 
-Amdahl's law gives the upper limit of speedup for a problem of fixed
-size. This seems to be a bottleneck for parallel computing; if one
-would like to gain a 500 times speedup on 1000 processors, Amdahl’s
-law requires that the proportion of serial part cannot exceed 0.1%.
-However, in practice the sizes of problems scale with the amount of
+#### Strong scaling
+
+- Defined as how the solution time varies with the number of
+  processors for a *fixed total problem size*.
+- Linear **strong** scaling if the speedup (work units completed per
+  unit time) is equal to the number of processing elements used.
+- Harder to achieve good strong-scaling at larger process counts since
+  communication overhead typically increases with the number of
+  processes used.
+
+In practice the sizes of problems scale with the amount of
 available resources, and we also need a measure for a relative speedup
 which takes into account increasing problem sizes.
 
@@ -223,13 +230,15 @@ focuses on fixed problem size).
 
 ![A figure showing strong scaling]({{ page.root }}{% link fig/scaling_gustafson.png %})
 
-> ## Gustafson's law in practice
-> If we apply Gustafson’s law to the previous example of s = 0.05 and p
-> = 0.95, the scaled speedup will become infinity when infinitely many
-> processors are used. Realistically, if we have N = 1000, the scaled
-> speedup will be 950.
-{: .callout}
+#### Weak scaling
 
+- Defined as how the solution time varies with the number of
+  processors for a *fixed problem size per processor*.
+- Linear **weak** scaling if the run time stays constant while the
+  workload is increased in direct proportion to the number of
+  processors.
+
+---
 
 ### Communication considerations
 
@@ -249,6 +258,8 @@ significant when the number of ranks is small and the execution of
 parallel regions gets faster with the number of ranks.  But if we keep
 increasing the number of ranks, the time spent in communication grows
 when multiple cores are involved with communication
+
+---
 
 ### Surface-to-Volume Ratio
 

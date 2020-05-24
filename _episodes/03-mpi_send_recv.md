@@ -143,16 +143,16 @@ even if `MPI_Send` has been called.
 >
 {: .callout .show-python}
 
-The number of arguments can make these commands look complicated,
-so don't worry if you need to refer back to the documentation regularly
-when working with them.
-The first four arguments specify what data needs to be sent or received
-and the destination or source of the message.
+The number of arguments can make these commands look complicated, so
+don't worry if you need to refer back to the documentation regularly
+when working with them. The most important arguments specify what
+data needs to be sent or received and the destination or source of the
+message.
 
-The message tag is used to differentiate messages, in case rank A has sent
-multiple pieces of data to rank B.
-When rank B requests for a message with the correct tag, the data buffer will
-be overwritten by that message.
+The message tag is used to differentiate messages, in case rank A has
+sent multiple pieces of data to rank B.  When rank B requests for a
+message with the correct tag, the data buffer will be overwritten by
+that message.
 
 The communicator is something we have seen before.
 It specifies information about the system and where each rank actually is.
@@ -270,13 +270,34 @@ if rank == 1:
 >
 {: .challenge}
 
-> ## MPI Types
+> ## MPI Types in C
 > 
 > In the above example we send a string of characters and
-> therefore specify the type `MPI_CHAR`{: .show-c}`MPI_CHARACTER`{: .show-fortran}.
+> therefore specify the type `MPI_CHAR`{: .show-c}.
 > For a complete list of possibly types, see the [reference]({{ page.root }}{% link reference.md %}).
 >
-{: .callout}
+{: .callout .show-c}
+
+> ## MPI Types in Fortran
+> 
+> In the above example we send a string of characters and
+> therefore specify the type `MPI_CHARACTER`{: .show-fortran}.
+> For a complete list of possibly types, see the [reference]({{ page.root }}{% link reference.md %}).
+>
+{: .callout .show-fortran}
+
+> ## Communicating buffer-like objects in Python
+>
+> The lower-case methods `send` and `recv` are used to communicate
+> generic Python objects between MPI processes. It is also possible to
+> directly send buffer-like objects (e.g. NumPy arrays) which provides
+> faster communication and can be useful when working with large data,
+> but require the memory space to be allocated for the receiving buffer 
+> prior to communication.
+> These methods start with uppercase letters, e.g. `Send` and `Recv`.
+{: .callout .show-python}
+
+---
 
 > ## Many Ranks
 >
@@ -579,8 +600,9 @@ if rank == 1:
 
 > ## Blocking
 >
-> * Try this code and see what happens.
-> * How would you change the code to fix the problem?
+> - Try this code and see what happens.
+> - (If you are using the MPICH library, this example might automagically work. With OpenMPI it shouldn't)
+> - How would you change the code to fix the problem?
 >
 >~~~
 > #include <stdio.h>
