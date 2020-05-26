@@ -891,6 +891,16 @@ if rank == 1:
 >
 >> ## Solution
 >>
+>> `MPI.COMM_WORLD.send` will block execution until until the receiving process has called
+>> `MPI.COMM_WORLD.recv`. This prevents the sender from unintentionally modifying the message
+>> buffer before the message is actually sent.
+>> Above, both ranks call `MPI.COMM_WORLD.send` and just wait for the other to respond.
+>> The solution is to have one of the ranks receive its message before sending.
+>>
+>> Sometimes `MPI.COMM_WORLD.send` will actually make a copy of the buffer and return immediately.
+>> This generally happens only for short messages.
+>> Even when this happens, the actual transfer will not start before the receive is posted.
+>>
 >> ~~~
 >> from mpi4py import MPI
 >> import sys
