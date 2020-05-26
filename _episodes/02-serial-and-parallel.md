@@ -76,23 +76,25 @@ workers operate on different parts of the car.
 ### Data Dependency
 
 Another example, and a common operation in scientific computing, is
-calculating the sum of a set of numbers.  A simple implementation
-might look like this:
+the calculation of quantities that evolve in time or in an otherwise
+iterative manner (e.g. molecular dynamics, gradient descent). 
+A simple implementation might look like this:
 ~~~
-sum = 0
-for number in numbers
-   sum = sum + number
+old_value = starting_point
+for iteration in 1 ... 10000
+   new_value = function(old_value)
+   old_value = new_value
 ~~~
 {: .source}
-This is a very bad parallel algorithm!
-Every step, or iteration of the for loop, uses the same sum variable.
-To execute a step, the program needs to know the sum from the previous step.
+This is a very bad parallel algorithm! Every step, or iteration of
+the for loop, depends on the value of the previous step.
 
 The important factor that determines whether steps can be run in
-parallel is data dependencies.  In our sum example, every step depends
-on data from the previous step, the value of the sum variable.  When
-attaching tires to a car, attaching one tire does not depend on
-attaching the others, so these steps can be done at the same time.
+parallel is data dependencies.  In our example above, every step
+depends on data from the previous step, the value of the old_value
+variable. When attaching tires to a car, attaching one tire does not
+depend on attaching the others, so these steps can be done at the same
+time.
 
 However, attaching the front tires both require that the axis is
 there.  This step must be completed first, but the two tires can then
