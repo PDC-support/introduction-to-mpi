@@ -13,6 +13,12 @@ keypoints:
 - "The copies are distinguished by MPI rank."
 ---
 
+## Moore's law
+
+![Moore's law]({{ page.root }}{% link files/Moore.png %})
+
+> By Max Roser - https://ourworldindata.org/uploads/2019/05/Transistor-Count-over-time-to-2018.png, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=79751151
+
 ## Parallel Computing
 
 In many fields of science we need more computational power than a
