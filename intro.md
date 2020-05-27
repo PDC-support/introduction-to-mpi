@@ -20,7 +20,7 @@ title: Welcome
 
 #### For online workshops
 
-- Instructor gives a tour of Zoom.
+- Instructor gives a [tour of Zoom](https://github.com/coderefinery/manuals/blob/master/zoom-mechanics.md).
 - Announce that Zoom chat can be used for questions but that the content will be deleted afterwards.
 - We will use a hackmd for questions/notes/links that we want to keep.
 - We will neither record the session, nor archive the chat.
