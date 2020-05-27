@@ -670,7 +670,7 @@ but the result is sent to all the ranks.
 >>         if vector[i] > my_max:
 >>             my_max = vector[i]
 >>
->>     global_max = MPI.COMM_WORLD.allreduce(my_max, op=MPI.SUM)
+>>     global_max = MPI.COMM_WORLD.allreduce(my_max, op=MPI.MAX)
 >>
 >>     return global_max
 >> ~~~
