@@ -13,6 +13,9 @@ speed. Instead, new processors tend to have more processing units.  To
 take advantage of the increased resources, programs need to be written
 to run in parallel.
 
+![Moore's law]({{ page.root }}{% link files/Moore.png %})
+> By Max Roser - https://ourworldindata.org/uploads/2019/05/Transistor-Count-over-time-to-2018.png, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=79751151
+
 In High Performance Computing (HPC), a large number of
 state-of-the-art computers are joined together with a fast network.
 Using an HPC system efficiently requires a well designed parallel
