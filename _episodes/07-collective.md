@@ -318,8 +318,8 @@ but the result is sent to all the ranks.
 >>    call MPI_Gather( send_message, 40, MPI_CHARACTER, receive_message, 40, MPI_CHARACTER, 0, MPI_COMM_WORLD, ierr )
 >>    
 >>    if (rank == 0) then
->>        do sender = 1, n_ranks-1
->>            write(6,*) receive_message(40*sender: 40*(sender+1))
+>>        do sender = 0, n_ranks-1
+>>            write(6,*) receive_message(40*sender+1: 40*(sender+1))
 >>        end do
 >>    end if
 >>
